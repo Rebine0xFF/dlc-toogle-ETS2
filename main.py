@@ -160,7 +160,14 @@ class ETS2Manager:
 
 if __name__ == "__main__":
     try:
-        config_path = Path(__file__).parent / "config.ini"
+        import sys, os
+
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+
+        config_path = os.path.join(base_dir, 'config.ini')
         app = ETS2Manager(config_path)
         app.run()
     except Exception as e:
