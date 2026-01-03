@@ -40,7 +40,3 @@ The script logs to `launcher.log` and prints status to the console.
 
 - The script uses Windows-specific APIs for message boxes; it is intended for Windows only.
 - Always backup files before running; the script attempts to restore state after the game exits.
-
-## Credits
-
-App Icon: Designed by vectorsmarket15 (Flaticon).
