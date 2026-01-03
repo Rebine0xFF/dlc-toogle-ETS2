@@ -23,7 +23,13 @@ class ETS2Manager:
         self.config_file = config_file
         self.config = configparser.ConfigParser()
         self.config.read(config_file)
-        self.root_dir = Path(__file__).parent
+        # Correctly handle path whether running as script or frozen exe
+        if getattr(sys, 'frozen', False):
+            # If the application is run as a bundle (exe), 
+            # sys._MEIPASS is a temporary folder, but we want the folder where the EXE lives.
+            self.root_dir = Path(sys.executable).parent
+        else:
+            self.root_dir = Path(__file__).parent
 
         # 1. Validate paths immediately
         self._validate_paths()
